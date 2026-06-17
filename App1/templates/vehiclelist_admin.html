@@ -1,0 +1,258 @@
+{% extends 'header1.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .productlist .product-box img{
+    margin-right: 11px;
+    width: 100%;
+    margin-bottom: 3px;
+}
+</style>
+
+
+       <!--start content-->
+          <main class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb align-items-center mb-3">
+              <div class="breadcrumb-title pe-3">Vehicles List</div>
+<!--              <div class="ps-3">-->
+<!--                <nav aria-label="breadcrumb">-->
+<!--                  <ol class="breadcrumb mb-0 p-0">-->
+<!--                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>-->
+<!--                    </li>-->
+<!--                    <li class="breadcrumb-item active" aria-current="page">Products List</li>-->
+<!--                  </ol>-->
+<!--                </nav>-->
+<!--              </div>-->
+<!--              <div class="ms-auto">-->
+<!--                <div class="btn-group">-->
+<!--                  <button type="button" class="btn btn-primary">Settings</button>-->
+<!--                  <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>-->
+<!--                  </button>-->
+<!--                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>-->
+<!--                    <a class="dropdown-item" href="javascript:;">Another action</a>-->
+<!--                    <a class="dropdown-item" href="javascript:;">Something else here</a>-->
+<!--                    <div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+            </div>
+            <!--end breadcrumb-->
+
+              <div class="card">
+                <div class="card-header py-3">
+                  <div class="row align-items-center m-0">
+                    <div class="col-md-3 col-12 me-auto mb-md-0 mb-3">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                        <select class="form-select" name="pname">
+                            <option>All category</option>
+                            {% for val in pid %}
+                            <option value="{{val.id}}">{{val.Provider_name}}</option>
+                            {% endfor %}
+                        </select>
+                            <input type="submit" value="Submit" class="btn btn-outline-secondary">
+                        </form>
+                    </div>
+                 </div>
+                </div>
+
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table align-middle table-striped">
+                         <thead class="table-light">
+                                 <tr>
+
+                                   <th>ID</th>
+
+                                   <th>Provider Name</th>
+                                   <th>Brand Name</th>
+                                   <th>Vehicle Model</th>
+                                   <th>Vehicle Number</th>
+                                   <th>Chassis No</th>
+                                   <th>Fuel_type</th>
+                                   <th>Transmission_type</th>
+                                   <th>Seating_capacity</th>
+                                   <th>Rent Price</th>
+                                   <th>Image</th>
+                                   <th>Insurance</th>
+                                 </tr>
+                               </thead>
+
+                      {% if spid == None %}
+                      {% for i in vid %}
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <h6>{{i.id}}</h6>
+                            </div>
+                          </td>
+
+                            <td>
+                            <div class="form-check">
+                              <h6>{{i.Provider_id}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Brand_name}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Vehicle_model}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Vehicle_number}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Chassis_no}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Fuel_type}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Transmission_type}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Seating_capacity}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Rent_price}}</h6>
+                            </div>
+                          </td>
+
+                            <td class="productlist">
+
+                              <div class="product-box">
+                                  <img src="{{i.Vehicle_img1.url}}" class="card-img-top" alt="...">
+                              </div>
+
+                          </td>
+
+                            <td class="productlist">
+
+                              <div class="product-box">
+                                  <img src="{{i.Img_insurance.url}}" class="card-img-top" alt="...">
+                              </div>
+
+                          </td>
+                        </tr>
+                        </tbody>
+
+                             {% endfor %}
+                            {% else %}
+                            {% for i in vid %}
+                            {% if i.Provider_id == spid %}
+                            <tbody>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <h6>{{i.id}}</h6>
+                            </div>
+                          </td>
+
+                            <td>
+                            <div class="form-check">
+                              <h6>{{i.Provider_id}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Brand_name}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Vehicle_model}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Vehicle_number}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Chassis_no}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Fuel_type}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Transmission_type}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Seating_capacity}}</h6>
+                            </div>
+                          </td>
+
+                             <td>
+                            <div class="form-check">
+                              <h6>{{i.Rent_price}}</h6>
+                            </div>
+                          </td>
+
+                            <td class="productlist">
+
+                              <div class="product-box">
+                                  <img src="{{i.Vehicle_img1.url}}" class="card-img-top" alt="...">
+                              </div>
+
+                          </td>
+
+                            <td class="productlist">
+
+                              <div class="product-box">
+                                  <img src="{{i.Img_insurance.url}}" class="card-img-top" alt="...">
+                              </div>
+
+                          </td>
+                        </tr>
+                        </tbody>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                    </table>
+                  </div>
+            </div>
+         </div>
+
+ </main>
+       <!--end page main-->
+
+{% endblock %}

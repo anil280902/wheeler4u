@@ -1,0 +1,65 @@
+{% extends 'header1.html' %}
+{% load static %}
+{% block content %}
+
+       <!--start content-->
+          <main class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb align-items-center mb-3">
+              <div class="breadcrumb-title pe-3">All Bookings</div>
+            </div>
+            <!--end breadcrumb-->
+
+              <div class="row" id="a1">
+                 <div class="col-12 col-lg-9 d-flex">
+                   <div class="card w-100">
+                    <div class="card-header py-3">
+                     <div class="card-body">
+                       <div class="table-responsive">
+                         <table class="table align-middle">
+                           <thead class="table-light">
+                             <tr>
+                                 <th>Booking Id</th>
+                                 <th>UserName</th>
+                                 <th>Provider Name</th>
+                                 <th>Vehicle Image</th>
+                                 <th>Vehicle No</th>
+                                 <th>B_start_date</th>
+                                 <th>B_end_time</th>
+                                 <th>Starting_location</th>
+                                 <th>Ending_location</th>
+                                 <th>Timestamp</th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                           {% for i in bid %}
+                             <tr>
+                                 <td>{{i.id}}</td>
+                                 <td>{{i.User_id}}</td>
+                                 <td>{{i.Provider_id}}</td>
+                                 <td>
+                                     <div class="product-box">
+                                        <img src="{{i.Vehicle_id.Vehicle_img1.url}}" class="card-img-top" alt="...">
+                                     </div>
+                                 </td>
+                                 <td>{{i.Vehicle_id}}</td>
+                                 <td>{{i.B_start_date}}</td>
+                                 <td>{{i.B_end_date}}</td>
+                                 <td>{{i.Starting_location}}</td>
+                                 <td>{{i.Ending_location}}</td>
+                                 <td>{{i.Created_at}}</td>
+                             </tr>
+                           {% endfor %}
+                           </tbody>
+                         </table>
+                       </div>
+
+                     </div>
+                   </div>
+                 </div>
+              </div><!--end row-->
+              </div>
+          </main>
+       <!--end page main-->
+
+{% endblock %}
