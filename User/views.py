@@ -38,7 +38,7 @@ def usersignup(request):
         User_name = request.POST['User_name']
         Email = request.POST['Email']
         Password = request.POST['Password']
-        Gender = request.POST['Gender']
+        Gender = request.POST.get('Gender', '')
         Phone_no = request.POST['Phone_no']
         Licence_no = request.POST['Licence_no']
         Address = request.POST['Address']
